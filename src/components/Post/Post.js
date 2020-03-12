@@ -13,6 +13,7 @@ import Edit from './Edit/Edit';
 
 const { text, date } = this.props
 
+
 export default class Post extends Component {
   constructor() {
     super();
@@ -68,7 +69,7 @@ export default class Post extends Component {
           {/* Drop-down menu. Remember that the "showMasterMenu" variable has been destructured off of this.state */}
           <div className="Post__master-menu" style={ { display: showMasterMenu ? 'flex' : 'none' } }>
             <span onClick={ this.showEdit }>Edit</span>
-            <span>Delete</span>
+            <span onClick={ () => deletePostFn( id )}>Delete</span> { this.props.deltePostFn  }
           </div>
         </div>
 
@@ -97,7 +98,8 @@ export default class Post extends Component {
             // This has been pulled off of this.state via destructuring
             editing
             ?
-              <Edit text=""
+              <Edit text={ text }
+                    id = { id }
                     hideEdit={ this.hideEdit } />
             :
               <span className="Post__text"> { text } </span>
